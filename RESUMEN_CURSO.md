@@ -191,4 +191,8 @@ Aquí se documentan los proyectos construidos al poner todo a prueba.
 - **Objetivo:** Crear un juego en consola que te pide adivinar un número al azar, contando los intentos e impidiendo que el código se rompa al ingresar letras u otros símbolos.
 - **Qué pusiste a prueba:** `while True`, la inclusión directa del paquete `random`, el control de excepciones estricto usando `except ValueError` y actualizar variables de estado (`intento += 1`). 
 
+**Mini Reto #3: El Secretario Automático (Generador Masivo)**
+- **Objetivo:** Crear dinámicamente múltiples sub-carpetas y archivos de texto (`.txt`) independientes, uno para cada cliente en una base de datos, inyectando plantillas de correos con formato personalizado.
+- **Qué pusiste a prueba:** Tu dominio de `os.makedirs` y creación local de rutas de sistema largas, el scope (ámbito) de las variables como `ruta_destino` dentro de bucles `for`, la escritura en modo "w", y las "f-strings".
+
 *(Este documento será actualizado todos los días después de que resuelvas tu Reto Diario)*
