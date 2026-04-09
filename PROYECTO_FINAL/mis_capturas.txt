@@ -1,0 +1,4 @@
+Pokemon atrapado: pikachu, Peso: 60, Altura: 4
+Pokemon atrapado: celebi, Peso: 50, Altura: 6
+Pokemon atrapado: gastly, Peso: 1, Altura: 13
+Pokemon atrapado: vulpix, Peso: 99, Altura: 6
