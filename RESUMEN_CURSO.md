@@ -149,6 +149,7 @@ jefes_millonarios.to_excel("jefes.xlsx", index=False)
 
 # Gráficos
 plt.bar(df["Empleado"], df["Total"])
+plt.savefig("grafico.png") # Debe ir ANTES de show()
 plt.show()
 ```
 
@@ -177,6 +178,8 @@ A lo largo de los ejercicios descubriste e implementaste por tu cuenta estas her
 - **`.lower()`**: Usado en cadenas de texto para transformarlas a minúsculas y hacer que el código sea resistente a mayúsculas mal escritas (Case-Insensitive).
 - **`.strip()`**: Para limpiar variables de texto y quitar espacios en blanco invisibles o saltos de línea al final pegados por error.
 - **`KeyboardInterrupt`**: Usado junto a `try / except` para evitar que Python cierre feamente con letras rojas si el usuario pulsa `Ctrl + C`.
+- **Rutas Nativas Rápidas (`/`)**: Usar barras normales `/` en las rutas funciona en cualquier sistema operativo y nos salva de tener que escribir `\\` todo el tiempo.
+- **Trampa de la Fotografía (`savefig vs show`)**: Matplotlib vacía su bloc de dibujo cuando pones `plt.show()`. Por ende, el `plt.savefig()` siempre DEBE ponerse antes, de lo contrario la imagen exportada saldrá en blanco.
 
 ---
 
@@ -185,14 +188,18 @@ Aquí se documentan los proyectos construidos al poner todo a prueba.
 
 **Mini Reto #1: El Recolector de Usuarios**
 - **Objetivo:** Conectarse a la API web `https://jsonplaceholder.typicode.com/users`, extraer datos anidados y convertirlos en un DataFrame exportado a Excel (`.xlsx`).
-- **Qué pusiste a prueba:** Tu habilidad de manejar diccionarios dentro de diccionarios `["address"]["city"]`, manejar bucles `for` para rellenar listas independientes y usar `requests` mezclado con `pandas`.
+- **Qué pusiste a prueba:** Manejar diccionarios anidados `["address"]["city"]`, rellenar listas con `for`, y usar `requests` con `pandas`.
 
 **Mini Reto #2: El Casino Infalible**
-- **Objetivo:** Crear un juego en consola que te pide adivinar un número al azar, contando los intentos e impidiendo que el código se rompa al ingresar letras u otros símbolos.
-- **Qué pusiste a prueba:** `while True`, la inclusión directa del paquete `random`, el control de excepciones estricto usando `except ValueError` y actualizar variables de estado (`intento += 1`). 
+- **Objetivo:** Crear un juego en consola que te pide adivinar un número al azar, contando los intentos e impidiendo que el código se rompa.
+- **Qué pusiste a prueba:** `while True`, `random`, el control de excepciones `except ValueError`/`KeyboardInterrupt` y actualizaciones de estado. 
 
 **Mini Reto #3: El Secretario Automático (Generador Masivo)**
-- **Objetivo:** Crear dinámicamente múltiples sub-carpetas y archivos de texto (`.txt`) independientes, uno para cada cliente en una base de datos, inyectando plantillas de correos con formato personalizado.
-- **Qué pusiste a prueba:** Tu dominio de `os.makedirs` y creación local de rutas de sistema largas, el scope (ámbito) de las variables como `ruta_destino` dentro de bucles `for`, la escritura en modo "w", y las "f-strings".
+- **Objetivo:** Crear múltiples archivos `.txt` independientes, uno para cada cliente en una base de datos, inyectando plantillas con formato.
+- **Qué pusiste a prueba:** Dominio de `os.makedirs`, corrección de scope de variables dentro del bucle, escritura en modo "w", y las f-strings con rutas.
+
+**Mini Reto #4: El Analista de Presupuestos**
+- **Objetivo:** Crear una base de datos de inventario desde cero (`csv`), exportar analíticas y graficar los gastos por departamento de una empresa exportando la gráfica resultante como una imagen PNG fotográfica.
+- **Qué pusiste a prueba:** Generación estructurada de un diccionario-base, conversión a *DataFrame* `pd.DataFrame()`, el diseño de un `plt.bar` con título y la vital orden de procedencia entre guardar el diseño (`savefig`) contra y mostrarlo en la interfaz de pantalla (`show`).
 
 *(Este documento será actualizado todos los días después de que resuelvas tu Reto Diario)*
