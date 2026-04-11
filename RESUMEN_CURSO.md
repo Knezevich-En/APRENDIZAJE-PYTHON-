@@ -176,10 +176,12 @@ A lo largo de los ejercicios descubriste e implementaste por tu cuenta estas her
 - **`continue`**: Usado dentro de un bucle para ignorar el código restante y saltar automáticamente a la siguiente repetición.
 - **`len(lista)`**: Para contar exactamente cuántos elementos tiene una estructura de datos.
 - **`.lower()`**: Usado en cadenas de texto para transformarlas a minúsculas y hacer que el código sea resistente a mayúsculas mal escritas (Case-Insensitive).
-- **`.strip()`**: Para limpiar variables de texto y quitar espacios en blanco invisibles o saltos de línea al final pegados por error.
+- **`.strip()` y `.capitalize()`**: Usados para limpiar espacios en blanco pegados por error y forzar mayúsculas.
+- **Encadenamiento de Métodos (Method Chaining)**: Puedes aplicar múltiples filtros seguidos sin crear variables extra: `texto.strip().capitalize()`.
+- **Acumulador de Textos (`+=`)**: Puedes usar el operador de suma matemática `+=` para concatenar (pegar) letras continuamente en una variable de texto.
 - **`KeyboardInterrupt`**: Usado junto a `try / except` para evitar que Python cierre feamente con letras rojas si el usuario pulsa `Ctrl + C`.
-- **Rutas Nativas Rápidas (`/`)**: Usar barras normales `/` en las rutas funciona en cualquier sistema operativo y nos salva de tener que escribir `\\` todo el tiempo.
-- **Trampa de la Fotografía (`savefig vs show`)**: Matplotlib vacía su bloc de dibujo cuando pones `plt.show()`. Por ende, el `plt.savefig()` siempre DEBE ponerse antes, de lo contrario la imagen exportada saldrá en blanco.
+- **Rutas Nativas Rápidas (`/` y `\\`)**: Acuérdate de USAR las `/` (barras normales) o doble-barra `\\` cuando escribas la ruta de un archivo de sistema, ¡pues una sola `\` da error! (El clásico `SyntaxWarning: invalid escape sequence`).
+- **Trampa de la Fotografía (`savefig vs show`)**: Matplotlib vacía su bloc de dibujo cuando pones `plt.show()`. Por ende, el `plt.savefig()` siempre DEBE ponerse antes.
 
 ---
 
@@ -188,18 +190,21 @@ Aquí se documentan los proyectos construidos al poner todo a prueba.
 
 **Mini Reto #1: El Recolector de Usuarios**
 - **Objetivo:** Conectarse a la API web `https://jsonplaceholder.typicode.com/users`, extraer datos anidados y convertirlos en un DataFrame exportado a Excel (`.xlsx`).
-- **Qué pusiste a prueba:** Manejar diccionarios anidados `["address"]["city"]`, rellenar listas con `for`, y usar `requests` con `pandas`.
 
 **Mini Reto #2: El Casino Infalible**
 - **Objetivo:** Crear un juego en consola que te pide adivinar un número al azar, contando los intentos e impidiendo que el código se rompa.
-- **Qué pusiste a prueba:** `while True`, `random`, el control de excepciones `except ValueError`/`KeyboardInterrupt` y actualizaciones de estado. 
 
 **Mini Reto #3: El Secretario Automático (Generador Masivo)**
 - **Objetivo:** Crear múltiples archivos `.txt` independientes, uno para cada cliente en una base de datos, inyectando plantillas con formato.
-- **Qué pusiste a prueba:** Dominio de `os.makedirs`, corrección de scope de variables dentro del bucle, escritura en modo "w", y las f-strings con rutas.
 
 **Mini Reto #4: El Analista de Presupuestos**
-- **Objetivo:** Crear una base de datos de inventario desde cero (`csv`), exportar analíticas y graficar los gastos por departamento de una empresa exportando la gráfica resultante como una imagen PNG fotográfica.
-- **Qué pusiste a prueba:** Generación estructurada de un diccionario-base, conversión a *DataFrame* `pd.DataFrame()`, el diseño de un `plt.bar` con título y la vital orden de procedencia entre guardar el diseño (`savefig`) contra y mostrarlo en la interfaz de pantalla (`show`).
+- **Objetivo:** Crear una base de datos de inventario desde cero (`csv`) y exportar gráficas a imágenes PNG generadas estructuralmente desde Matplotlib.
+
+**Mini Reto #5: El Purificador de Datos (Data Cleaning)**
+- **Objetivo:** Recibir un lote de textos ("nombres de clientes") pésimamente formateados, y usar un algoritmo aplicando métodos de limpieza de cadenas (`.strip().capitalize()`) para normalizarlos y salvarlos en disco.
+
+**Mini Reto #6: El Creador de Contraseñas (Ciberseguridad)**
+- **Objetivo:** Programar un generador de tokens de seguridad ultraseguros, dictando con precisión una longitud de caracteres.
+- **Qué pusiste a prueba:** Tu dominio de la herramienta `random.choice`, el uso del bucle ciego pre-calculado `for i in range(8)` y la concatenación acumulativa de cadenas de texto.
 
 *(Este documento será actualizado todos los días después de que resuelvas tu Reto Diario)*
