@@ -1,4 +1,4 @@
-# 🐍 Resumen Definitivo: Python Desde Cero
+# 🐍 Resumen Definitivo: Python Desde Cero hasta Inteligencia Artificial
 
 ¡Esta es tu hoja de trucos (Cheat Sheet)! Aquí está todo lo que hemos aprendido y dominado a lo largo de los ejercicios y retos. Úsala para repasar la sintaxis o cuando no recuerdes cómo se escribía algo.
 
@@ -172,18 +172,20 @@ shutil.move("ruta/archivo1.csv", "ruta2/destino.csv")
 ---
 
 ## 11. Descubrimientos Proactivos (¡Trucos Avanzados!)
-- **`continue`**: Usado dentro de un bucle para ignorar el código restante y saltar automáticamente a la siguiente repetición.
+- **`continue`**: Usado dentro de un bucle para ignorar el código restante y saltar a la siguiente repetición.
 - **`len(lista)`**: Para contar exactamente cuántos elementos tiene una estructura de datos.
-- **`.lower()` y `.upper()`**: Usados en cadenas de texto para forzarlas a minúsculas o mayúsculas haciendo tus `if` a prueba de fallos.
+- **`.lower()` y `.upper()`**: Usados en cadenas de texto para forzarlas a minúsculas o mayúsculas.
 - **`.strip()` y `.capitalize()`**: Usados para limpiar espacios en blanco pegados por error y forzar la primera letra a mayúscula.
 - **Encadenamiento de Métodos (Method Chaining)**: Puedes aplicar múltiples filtros seguidos: `texto.strip().upper()`.
-- **Acumulador de Textos (`+=`)**: Puedes usar el operador de suma matemática `+=` para concatenar (pegar) letras continuamente en una variable de texto.
+- **Acumulador de Textos (`+=`)**: Puedes usar `+=` para concatenar (pegar) letras continuamente.
 - **Fechas Limpias (`datetime`)**: La herramienta `datetime.now()` combinada con el limpiador `.strftime("%Y-%m-%d_%H-%M-%S")` genera firmas de tiempo inquebrantables.
-- **Límite del modo Write (`"w"`)**: El modo `"w"` en `with open` crea **archivos**, pero es incapaz de generar la *carpeta padre* si no existe previamente. (`FileNotFoundError`). 
+- **Límite del modo Write (`"w"`)**: El modo `"w"` en `with open` crea **archivos**, pero es incapaz de generar la *carpeta padre* si no existe previamente.
+- **Descabezar Datos Sucios `.pop(0)`**: Si abres archivos viejos y las primeras/últimas líneas son basura visual, usar `.pop(0)` arranca esas líneas destructivas para no colapsar tu DataFrame.
+- **Procesamiento de Lenguaje Natural (NLP)**: Con solo importar un modelo Machine Learning como `TextBlob`, se puede invocar su propiedad matemática `.sentiment.polarity` para medir estadísticamente el odio o amor en una cadena de texto sin ser expertos en redes neuronales. 
 
 ---
 
-## 🏆 12. Historial de Mini Retos Diarios (`RETOS_DIARIOS`)
+## 🏆 12. Historial de Retos Diarios (`RETOS_DIARIOS` y `DATA_AVANZADA`)
 Aquí se documentan los proyectos construidos al poner todo a prueba.
 
 **Mini Reto #4: El Analista de Presupuestos**
@@ -196,10 +198,15 @@ Aquí se documentan los proyectos construidos al poner todo a prueba.
 - **Objetivo:** Programar un generador de tokens usando acumuladores y `random.choice`.
 
 **Mini Reto #7: El Reloj Maestro (Manejo de Timestamps e I/O)**
-- **Objetivo:** Integrar la librería base `datetime`, extrayendo el tiempo preciso de la CPU y aplicando un filtro `strftime` para nombrar reportes inteligentemente.
+- **Objetivo:** Integrar la librería base `datetime` combinándolo con comandos de I/O.
 
 **Mini Reto #8: La Calculadora de Descuentos VIP (Lógica Modular)**
-- **Objetivo:** Encapsular un motor matemático de porcentajes que funciona independiente (usando `def` y `return`) y conectarlo a una terminal infinita protegida contra errores.
-- **Qué pusiste a prueba:** Tu habilidad de combinarlo todo. Creaste una interfaz infinita, blindaste las respuestas con `try / except`, implementaste limpieza de datos avanzada en tu condicional (ej. `input().strip().upper() == "SALIR"`) y aislaste la lógica en una función externa.
+- **Objetivo:** Encapsular un motor matemático en una función independiente (usando `def` y `return`) conectándolo a un `while True`.
+
+**Reto Avanzado #1: El Minero de Datos (Data Engineering)**
+- **Objetivo:** Aislar una tabla de un .txt dañado en un sistema legacy lleno de fallos de memoria, rompiendo filas con el `.split("|")` y purificando dinámicamente usando `.pop()` en listas de Python hasta inyectarlo sin letras a base de datos de Pandas.
+
+**Reto Avanzado #2: El Lector de Mentes (Inteligencia Artificial / NLP)**
+- **Objetivo:** Cargar en tu computadora y memoria RAM un cerebro gratuito de inteligencia artificial puramente algorítmico, y enviar textos de usuarios capturados en un `while True` a su red neuronal usando `TextBlob` para obtener y catalogar su reacción (Enfado/Felicidad) como variables flotantes controladas.
 
 *(Este documento será actualizado todos los días después de que resuelvas tu Reto Diario)*
