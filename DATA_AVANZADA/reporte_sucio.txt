@@ -1,0 +1,22 @@
+*** REPORTE GENERADO AUTOMATICAMENTE DE SISTEMA ANTIGUO (COBOL) ***
+Fecha: 12-Abril-2026
+Autor: administrador
+ADVERTENCIA: Fallo de memoria en el sector 7G. Ignorar.
+--- INICIO DEL DUMP DE DATOS ---
+
+Aqui viene la matriz de ventas despues de estos textos basura que PowerBI odia:
+
++--------+---------------+-----------+
+| ID_EMP | NOMBRE_EMPLE  | VENTAS_US |
++--------+---------------+-----------+
+| 1001   |    ArtuRo     |  150.50   |
++--------+---------------+-----------+
+| 1002   |  MARia        |  3400.00  |
++--------+---------------+-----------+
+| 1003   |  juan Perez   |  23.80    |
++--------+---------------+-----------+
+| 1004   | SOfia         |  485.99   |
++--------+---------------+-----------+
+
+ESTE ES EL FINAL DEL REPORTE. NO HAY MAS DATOS.
+SISTEMA APAGANDOSE...
