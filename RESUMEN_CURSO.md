@@ -172,39 +172,34 @@ shutil.move("ruta/archivo1.csv", "ruta2/destino.csv")
 ---
 
 ## 11. Descubrimientos Proactivos (¡Trucos Avanzados!)
-A lo largo de los ejercicios descubriste e implementaste por tu cuenta estas herramientas profesionales:
 - **`continue`**: Usado dentro de un bucle para ignorar el código restante y saltar automáticamente a la siguiente repetición.
 - **`len(lista)`**: Para contar exactamente cuántos elementos tiene una estructura de datos.
-- **`.lower()`**: Usado en cadenas de texto para transformarlas a minúsculas y hacer que el código sea resistente a mayúsculas mal escritas (Case-Insensitive).
-- **`.strip()` y `.capitalize()`**: Usados para limpiar espacios en blanco pegados por error y forzar mayúsculas.
-- **Encadenamiento de Métodos (Method Chaining)**: Puedes aplicar múltiples filtros seguidos sin crear variables extra: `texto.strip().capitalize()`.
+- **`.lower()` y `.upper()`**: Usados en cadenas de texto para forzarlas a minúsculas o mayúsculas haciendo tus `if` a prueba de fallos.
+- **`.strip()` y `.capitalize()`**: Usados para limpiar espacios en blanco pegados por error y forzar la primera letra a mayúscula.
+- **Encadenamiento de Métodos (Method Chaining)**: Puedes aplicar múltiples filtros seguidos: `texto.strip().upper()`.
 - **Acumulador de Textos (`+=`)**: Puedes usar el operador de suma matemática `+=` para concatenar (pegar) letras continuamente en una variable de texto.
-- **`KeyboardInterrupt`**: Usado junto a `try / except` para evitar que Python cierre feamente con letras rojas si el usuario pulsa `Ctrl + C`.
-- **Rutas Nativas Rápidas (`/` y `\\`)**: Acuérdate de USAR las `/` (barras normales) o doble-barra `\\` cuando escribas la ruta de un archivo de sistema, ¡pues una sola `\` da error! (El clásico `SyntaxWarning: invalid escape sequence`).
-- **Trampa de la Fotografía (`savefig vs show`)**: Matplotlib vacía su bloc de dibujo cuando pones `plt.show()`. Por ende, el `plt.savefig()` siempre DEBE ponerse antes.
+- **Fechas Limpias (`datetime`)**: La herramienta `datetime.now()` combinada con el limpiador `.strftime("%Y-%m-%d_%H-%M-%S")` genera firmas de tiempo inquebrantables.
+- **Límite del modo Write (`"w"`)**: El modo `"w"` en `with open` crea **archivos**, pero es incapaz de generar la *carpeta padre* si no existe previamente. (`FileNotFoundError`). 
 
 ---
 
 ## 🏆 12. Historial de Mini Retos Diarios (`RETOS_DIARIOS`)
 Aquí se documentan los proyectos construidos al poner todo a prueba.
 
-**Mini Reto #1: El Recolector de Usuarios**
-- **Objetivo:** Conectarse a la API web `https://jsonplaceholder.typicode.com/users`, extraer datos anidados y convertirlos en un DataFrame exportado a Excel (`.xlsx`).
-
-**Mini Reto #2: El Casino Infalible**
-- **Objetivo:** Crear un juego en consola que te pide adivinar un número al azar, contando los intentos e impidiendo que el código se rompa.
-
-**Mini Reto #3: El Secretario Automático (Generador Masivo)**
-- **Objetivo:** Crear múltiples archivos `.txt` independientes, uno para cada cliente en una base de datos, inyectando plantillas con formato.
-
 **Mini Reto #4: El Analista de Presupuestos**
-- **Objetivo:** Crear una base de datos de inventario desde cero (`csv`) y exportar gráficas a imágenes PNG generadas estructuralmente desde Matplotlib.
+- **Objetivo:** Exportar gráficas a imágenes PNG generadas estructuralmente desde Matplotlib.
 
 **Mini Reto #5: El Purificador de Datos (Data Cleaning)**
-- **Objetivo:** Recibir un lote de textos ("nombres de clientes") pésimamente formateados, y usar un algoritmo aplicando métodos de limpieza de cadenas (`.strip().capitalize()`) para normalizarlos y salvarlos en disco.
+- **Objetivo:** Recibir un lote de textos pésimamente formateados, y usar un algoritmo aplicando métodos de limpieza de cadenas (`.strip().capitalize()`).
 
 **Mini Reto #6: El Creador de Contraseñas (Ciberseguridad)**
-- **Objetivo:** Programar un generador de tokens de seguridad ultraseguros, dictando con precisión una longitud de caracteres.
-- **Qué pusiste a prueba:** Tu dominio de la herramienta `random.choice`, el uso del bucle ciego pre-calculado `for i in range(8)` y la concatenación acumulativa de cadenas de texto.
+- **Objetivo:** Programar un generador de tokens usando acumuladores y `random.choice`.
+
+**Mini Reto #7: El Reloj Maestro (Manejo de Timestamps e I/O)**
+- **Objetivo:** Integrar la librería base `datetime`, extrayendo el tiempo preciso de la CPU y aplicando un filtro `strftime` para nombrar reportes inteligentemente.
+
+**Mini Reto #8: La Calculadora de Descuentos VIP (Lógica Modular)**
+- **Objetivo:** Encapsular un motor matemático de porcentajes que funciona independiente (usando `def` y `return`) y conectarlo a una terminal infinita protegida contra errores.
+- **Qué pusiste a prueba:** Tu habilidad de combinarlo todo. Creaste una interfaz infinita, blindaste las respuestas con `try / except`, implementaste limpieza de datos avanzada en tu condicional (ej. `input().strip().upper() == "SALIR"`) y aislaste la lógica en una función externa.
 
 *(Este documento será actualizado todos los días después de que resuelvas tu Reto Diario)*
