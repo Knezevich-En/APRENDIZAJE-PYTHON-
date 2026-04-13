@@ -1,212 +1,206 @@
 # 🐍 Resumen Definitivo: Python Desde Cero hasta Inteligencia Artificial
 
-¡Esta es tu hoja de trucos (Cheat Sheet)! Aquí está todo lo que hemos aprendido y dominado a lo largo de los ejercicios y retos. Úsala para repasar la sintaxis o cuando no recuerdes cómo se escribía algo.
+¡Esta es tu hoja de trucos (Cheat Sheet) maestra! Aquí está todo lo que hemos dominado estructurado con ejemplos del **mundo real**, para que sepas no solo cómo escribirlo, sino *cuándo* usarlo en una empresa.
 
 ---
 
 ## 1. Variables, Tipos de Datos y Entradas (`VARIABLES_TIPOS`)
-La base de nuestro código. Usamos variables para almacenar información y f-strings para imprimir texto dinámico.
+> **Caso de uso Real:** Formularios de registro web básicos, captura de precios en un Punto de Venta.
+
 ```python
-# f-strings: Mezclar texto con variables de forma rápida
-nombre = "Arturo"
-print(f"Hola {nombre}")
+nombre_cliente = "Arturo"
+monto_pagar = 145.50
+print(f"Factura generada para {nombre_cliente}. Total: ${monto_pagar}")
 
-# Tipos de datos principales
-texto = "Letras" (string)
-entero = 23      (int)
-decimal = 15.5   (float)
-booleano = True  (bool)
-
-# Pedir datos y forzarlos a ser número
-edad = int(input("¿Cuántos años tienes?: "))
-temperatura = float(input("¿Grados?: "))
+estado_activo = True  # Útil para saber si un empleado sigue en la empresa.
+edad = int(input("¿Cuántos años tienes?: ")) # Forzado a Int
 ```
 
 ---
 
 ## 2. Lógica y Condiciones (`CONDICIONES`)
-Usado para que el ordenador tome decisiones.
+> **Caso de uso Real:** Filtros de pasarelas de pago.
+
 ```python
-if edad >= 18:
-    print("Eres mayor de edad")
-elif edad >= 13:
-    print("Eres adolescente")
-else:
-    print("Eres un niño")
-    
-# Operadores lógicos: 'and' (y) / 'or' (o)
-if tengo_dinero and hay_pizza:
-    print("Compramos la pizza")
+tarjeta_expirada = False
+saldo = 50
+
+if tarjeta_expirada == True:
+    print("Pago DENEGADO")
+elif saldo >= 100:
+    print("Pago EXITOSO. ¡Gracias por la compra!")
+else: print("Saldo INSÚFICIENTE.")
 ```
 
 ---
 
 ## 3. Estructuras de Datos (`ESTRUCTURAS_DATOS`)
-Para guardar docenas de cosas sin crear cientos de variables.
+> **Caso de uso Real:** Listados ordenados de extracción (Listas) y lectura de JSON webs (Diccionarios).
 
-**Listas (Para guardar cosas por orden númerico):**
 ```python
-lista = ["Manzana", "Pera", "Mango"]
-print(lista[0]) # Imprime 'Manzana' (¡Empieza en 0!)
-lista.append("Uva") # Añade al final de la lista
-```
+archivos = ["julio.csv", "agosto.csv"]
+archivos.append("nuevo.csv") # Listas mutables.
 
-**Diccionarios (Para guardar cosas con etiquetas/nombres):**
-```python
-perfil = {"nombre": "Arturo", "edad": 23}
-print(perfil["nombre"]) # Acceder al valor
-perfil["ciudad"] = "Guayaquil" # Añadir nueva llave
+empleado = { "id": 1001, "rol": "Admin" }
+print(empleado["rol"]) # Diccionario con Etiquetas.
 ```
 
 ---
 
 ## 4. Bucles y Repeticiones (`BUCLES`)
-Automatización de tareas repetitivas.
+> **Caso de uso Real:** Envío masivo de correos (For). Mantener el programa prendido (While).
 
-**Bucle `for` (Repetir para cada elemento de una lista):**
 ```python
-for juguete in lista_de_juguetes:
-    print(f"Limpiando el {juguete}")
-```
+for correo in lista_correos:
+    enviar(correo) 
 
-**Bucle `while` (Repetirse hasta que una condición se rompa):**
-```python
-contador = 0
-while True: # Bucle infinito
-    contador += 1
-    if contador == 5:
-        break # Rompe el bucle a la fuerza
+while True:
+    texto = input("Escriba SALIR: ")
+    if texto == "SALIR": break
 ```
 
 ---
 
-## 5. El Blindaje: Errores y Excepciones (`ERRORES`)
-Para que un mal teclado no explote nuestro programa.
+## 5. El Blindaje: Errores (`ERRORES`)
+> **Caso de uso Real:** Cajero de interfaz a prueba de caídas.
+
 ```python
 try:
-    numero = int(input("Ingresa un número: "))
+    edad = int(input("Ingrese su edad: "))
 except ValueError:
-    print("¡Debías usar números, no texto!")
+    print("Error: Ingrese solo números.")
 except KeyboardInterrupt:
-    print("\nAdios (Pulsaste Ctrl+C)")
+    print("\nEl usuario pulsó Ctrl+C.")
 ```
 
 ---
 
-## 6. Crear tus Propias Herramientas (`FUNCIONES`)
-No repitamos código, lo paquetizamos usando `def` y lo devolvemos con `return`.
-```python
-def sumar_precios(precio1, precio2):
-    total = precio1 + precio2
-    return total # Devuelve el resultado sin imprimirlo
+## 6. Funciones (`def`)
+> **Caso de uso Real:** Empaquetar bloques lógicos (como tu Calculadora de Descuentos VIP) para reutilizarlos mil veces.
 
-resultado = sumar_precios(50, 100)
+```python
+def aplicar_descuento(precio):
+    total = precio * 0.80
+    return total # Devuelve la materia procesada
+
+resultado = aplicar_descuento(500)
 ```
 
 ---
 
 ## 7. Manejo de Archivos Físicos (`ARCHIVOS`)
-Sobrevivir al apagado de la computadora.
+> **Caso de uso Real:** Escribir Logs persistentes.
+
 ```python
-# 'w' (Sobrescribe todo), 'a' (Añade al final), 'r' (Lee)
-with open("ruta/mis_metas.txt", "a", encoding="utf-8") as archivo:
-    archivo.write("Conseguir un cambio físico\n") # \n para salto de linea
+with open("registros.txt", "w") as archivo: # "w" Borra y crea, "a" Añade.
+    archivo.write("Guardar info en disco duro\n") 
 ```
 
 ---
 
-## 8. El Poder de APIs y Módulos Externos (`LIBRERIAS`)
-El internet es tuyo usando `import`.
-```python
-import random
-numero = random.randint(1, 10) # Numero al azar 1-10
+## 8. Data Science (`PANDAS` / `MATPLOTLIB`)
+> **Caso de uso Real:** Cruzar datos y exportar para analistas y PowerBI.
 
-# Sacar datos de internet con una API (Pokemon, Usuarios, Clima)
-import requests
-respuesta = requests.get("https://pokeapi.co/api/v2/pokemon/pikachu")
-diccionario_api = respuesta.json() # Traduce a un diccionario Python.
-```
-
----
-
-## 9. Ciencia de Datos y Gráficos (`CIENCIA_DATOS`)
-Filtrar millones de datos en 3 líneas de código.
 ```python
 import pandas as pd
 import matplotlib.pyplot as plt
 
-# Crear o Leer Tablas "DataFrames"
-df = pd.read_csv("mis_datos.csv")
-
-# Matemáticas masivas
-df["Total"] = df["Sueldo"] + df["Bono"]
-
-# Filtros condicionales
-jefes_millonarios = df[ df["Total"] > 5000 ]
-
-# Guardado a Excel
-jefes_millonarios.to_excel("jefes.xlsx", index=False)
-
-# Gráficos
-plt.bar(df["Empleado"], df["Total"])
-plt.savefig("grafico.png") # Debe ir ANTES de show()
-plt.show()
+df = pd.read_csv("datos.csv") 
+df["nueva_col"] = lista_calculada
+plt.bar(df["A"], df["B"])
+plt.savefig("reporte.png") # Va ANTES de show()
+plt.show() 
 ```
 
 ---
 
-## 10. La Automatización Pura (`AUTOMATIZACION`)
-Controlar Windows directamente usando tu código.
+## 10. Descubrimientos Proactivos (¡La Armería del Datos!)
+
+Esta es tu armería técnica para limpiar y escarbar en el caos. La lista está equipada con su respectivo código para que lo imites.
+
+**1. Formateo y Limpieza Cruda (`.strip()`, `.upper()`, `.lower()`)**
+> Útil para desinfectar entradas de teclado para que no exploten tus bloques 'If'.
 ```python
-import os
-import shutil
-
-# Crear carpetas si no existen
-os.makedirs("NUEVA_CARPETA", exist_ok=True)
-
-# Escanear qué hay en la carpeta y mover un archivo
-archivos = os.listdir("CIENCIA_DATOS")
-shutil.move("ruta/archivo1.csv", "ruta2/destino.csv")
+entrada = "   sALiR  "
+if entrada.strip().upper() == "SALIR":
+    print("Cerrando sistema exitosamente.")
 ```
 
----
+**2. Ignorar Cabeceras por Patrón (`.startswith(...)`)**
+> Usado al minar archivos TXT inmensos que en el top están llenos de decoraciones con asteriscos. 
+```python
+for linea in archivo.readlines():
+    if linea.startswith("*") or linea.startswith("LOG:"):
+        continue # Ignora la línea si tiene asteriscos y salta a la siguiente!
+    print("Linea de tabla útil:", linea)
+```
 
-## 11. Descubrimientos Proactivos (¡Trucos Avanzados!)
-- **`continue`**: Usado dentro de un bucle para ignorar el código restante y saltar a la siguiente repetición.
-- **`len(lista)`**: Para contar exactamente cuántos elementos tiene una estructura de datos.
-- **`.lower()` y `.upper()`**: Usados en cadenas de texto para forzarlas a minúsculas o mayúsculas.
-- **`.strip()` y `.capitalize()`**: Usados para limpiar espacios en blanco pegados por error y forzar la primera letra a mayúscula.
-- **Encadenamiento de Métodos (Method Chaining)**: Puedes aplicar múltiples filtros seguidos: `texto.strip().upper()`.
-- **Acumulador de Textos (`+=`)**: Puedes usar `+=` para concatenar (pegar) letras continuamente.
-- **Fechas Limpias (`datetime`)**: La herramienta `datetime.now()` combinada con el limpiador `.strftime("%Y-%m-%d_%H-%M-%S")` genera firmas de tiempo inquebrantables.
-- **Límite del modo Write (`"w"`)**: El modo `"w"` en `with open` crea **archivos**, pero es incapaz de generar la *carpeta padre* si no existe previamente.
-- **Descabezar Datos Sucios `.pop(0)`**: Si abres archivos viejos y las primeras/últimas líneas son basura visual, usar `.pop(0)` arranca esas líneas destructivas para no colapsar tu DataFrame.
-- **Procesamiento de Lenguaje Natural (NLP)**: Con solo importar un modelo Machine Learning como `TextBlob`, se puede invocar su propiedad matemática `.sentiment.polarity` para medir estadísticamente el odio o amor en una cadena de texto sin ser expertos en redes neuronales. 
+**3. El Machete de Frases (`.split("|")`)**
+> Imprescindible para sistemas COBOL o viejos. Corta un texto masivo en base a un ancla de tu elección dejándote una lista `[]`.
+```python
+# Ejemplo: "| 001 | Arturo |"
+datos = linea_cruda.split("|") 
+# Automáticamente crea la lista -> ['', ' 001 ', ' Arturo ', '']
+```
 
----
+**4. Arrancar Cabezas y Colas (`.pop()`)**
+> Cuando extraes información e infaliblemente te genera posiciones vacías o headers, sencillamente los destruyes usando el índice antes de hacer cálculos.
+```python
+precios = ["EL TITULO BASURA DEL EXCEL", 50, 40, 20]
+precios.pop(0) # Apunta y elimina el indice [0]. La lista se regenera.
+print(precios) # -> [50, 40, 20]
+```
 
-## 🏆 12. Historial de Retos Diarios (`RETOS_DIARIOS` y `DATA_AVANZADA`)
-Aquí se documentan los proyectos construidos al poner todo a prueba.
+**5. El Acumulador o Contador (`+=`)**
+> La forma matemática de darle memoria creciente o decreciente a una variable.
+```python
+intentos = 0
+precio_total = 0
 
-**Mini Reto #4: El Analista de Presupuestos**
-- **Objetivo:** Exportar gráficas a imágenes PNG generadas estructuralmente desde Matplotlib.
+intentos += 1 # Le suma 1 cada que avanza.
+precio_total += 50.50 # El número va creciendo orgánicamente sin reiniciarse.
+cadena_pass += "Z" # También sirve para pegar texto orgánicamente!
+```
 
-**Mini Reto #5: El Purificador de Datos (Data Cleaning)**
-- **Objetivo:** Recibir un lote de textos pésimamente formateados, y usar un algoritmo aplicando métodos de limpieza de cadenas (`.strip().capitalize()`).
+**6. El Dios del Tiempo (`datetime` y `.strftime()`)**
+> Tu fábrica de nombres de archivos inquebrantables.
+```python
+from datetime import datetime
+hora_sucia = datetime.now()
+# Formato A-M-D Hora-Minutos-Segundos (File-Friendly, jamas uses DOS PUNTOS en nombres de windows)
+hora_limpia = hora_sucia.strftime("%Y-%m-%d_%H-%M-%S") 
+ruta = f"C:\\reportes\\log_{hora_limpia}.txt"
+```
 
-**Mini Reto #6: El Creador de Contraseñas (Ciberseguridad)**
-- **Objetivo:** Programar un generador de tokens usando acumuladores y `random.choice`.
+**7. Inteligencia Artificial NLP (`TextBlob`)**
+> Obtener métricas flotantes entre -1.0 y 1.0 para analizar psicología y priorizar tickets de soporte técnico.
+```python
+from textblob import TextBlob
+comentario_cliente = "I absolutely hate this new update"
+ia = TextBlob(comentario_cliente)
+matematica_emocion = ia.sentiment.polarity 
+# matemática_emocion arroja un número -0.80.
+```
 
-**Mini Reto #7: El Reloj Maestro (Manejo de Timestamps e I/O)**
-- **Objetivo:** Integrar la librería base `datetime` combinándolo con comandos de I/O.
+**8. Web Scraping (`BeautifulSoup`)**
+> Robo y minería automática de código fuente web ignorando la interfaz gráfica para alimentar Excel y evadir copiado manual.
+```python
+import requests
+from bs4 import BeautifulSoup
+respuesta = requests.get("http://sitio.com")
+sabueso_scrap = BeautifulSoup(respuesta.text, "html.parser")
+# Caza HTML
+textos = sabueso_scrap.find_all("div", class_="titulo_precio") 
+for item in textos:
+    print(item.text) # Revela el diamante
+```
 
-**Mini Reto #8: La Calculadora de Descuentos VIP (Lógica Modular)**
-- **Objetivo:** Encapsular un motor matemático en una función independiente (usando `def` y `return`) conectándolo a un `while True`.
+**9. La Trampa Universal: `CSV Injection`**
+> Cuando transfieres tus limpiados datos a comas `.csv`, *debes* recordar inyectarle un marco de `"..."` comillas dobles, o de otra forma Pandas al leerlo sentirá que esa coma natural de la persona significa que quieres dividir esa palabra en la celda derecha.
+```python
+# Así se deben guardar las matrices si el texto contiene comas de puntuación:
+# 101, "Comida asombrosa, deliciosa"
+# 102, "Mala atención"
+```
 
-**Reto Avanzado #1: El Minero de Datos (Data Engineering)**
-- **Objetivo:** Aislar una tabla de un .txt dañado en un sistema legacy lleno de fallos de memoria, rompiendo filas con el `.split("|")` y purificando dinámicamente usando `.pop()` en listas de Python hasta inyectarlo sin letras a base de datos de Pandas.
-
-**Reto Avanzado #2: El Lector de Mentes (Inteligencia Artificial / NLP)**
-- **Objetivo:** Cargar en tu computadora y memoria RAM un cerebro gratuito de inteligencia artificial puramente algorítmico, y enviar textos de usuarios capturados en un `while True` a su red neuronal usando `TextBlob` para obtener y catalogar su reacción (Enfado/Felicidad) como variables flotantes controladas.
-
-*(Este documento será actualizado todos los días después de que resuelvas tu Reto Diario)*
+*(Este documento continuará su épico crecimiento)*
