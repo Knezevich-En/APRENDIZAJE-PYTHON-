@@ -119,8 +119,8 @@ with open("dataset.txt", "r") as archivo:
 
 ---
 
-## 8. Data Science (`PANDAS` / `MATPLOTLIB`)
-> **Caso de uso Real:** Cruzar datos y exportar para analistas y PowerBI.
+## 8. Data Science y Estadística (`PANDAS` / `MATPLOTLIB`)
+> **Caso de uso Real:** Cruzar datos, limpiar basura y exportar reportes para gerencia y PowerBI.
 
 ```python
 import pandas as pd
@@ -130,9 +130,24 @@ df = pd.read_csv("datos.csv")
 
 # `.astype(float)`: Herramienta de oro post-lectura. Obliga a que una columna
 # que vino contaminada como texto se vuelva decimal matemático puro para graficar.
-df["PRECIOS_PURA"] = df["PRECIOS_SUCIOS"].astype(float)
+df["PRECIOS"] = df["PRECIOS_SUCIOS"].astype(float)
 
-plt.bar(df["A"], df["PRECIOS_PURA"])
+# Exportación (.to_excel / .to_csv)
+# Guardamos los resultados finales puros (index=False evita que se imprima la enumeración inútil).
+df.to_excel("reporte_financiero_limpio.xlsx", index=False)
+
+# ----------------- INTELIGENCIA DE NEGOCIOS -----------------
+
+# Agrupaciones (Group By y Aggregation): Sumatoria y Estadísticas Masivas
+# Si tienes una base gigante y quieres saber cuánto vendió cada departamento, 
+# se usa groupby en la columna meta y se le exige procesar (.agg / .sum).
+resumen = df.groupby(['CATEGORIA']).agg({'PRECIO': 'sum'})
+# También puedes aplicar la versión express:
+# resumen = df.groupby("CATEGORIA")["PRECIO"].sum()
+
+# Gráficos (Data Visualization) de la Agrupación (Se saca desde en index)
+plt.bar(resumen.index, resumen["PRECIO"])
+plt.title("Ventas por Categoría") # Adornar
 plt.savefig("reporte.png") # Va ANTES de show() o se guarda la foto en blanco!
 plt.show() 
 ```
@@ -177,11 +192,6 @@ print(mi_dron.bateria) # Al leer su corazón, dice 80 directamente. Tiene memori
 
 **1. Limpieza Cruda (`.strip()`, `.upper()`, `.lower()`)**
 > Desinfectar entradas de teclado para que no explote tu validación If.
-```python
-entrada = "   sALiR  "
-if entrada.strip().upper() == "SALIR":
-    print("Cerrando sistema exitosamente.")
-```
 
 **2. Ignorar Cabeceras por Patrón (`.startswith(...)`)**
 > Usado al minar archivos TXT llenos de asteriscos. 
@@ -192,78 +202,63 @@ for linea in lineas_del_archivo:
 ```
 
 **3. El Machete de Frases (`.split("|")`)**
-> Imprescindible para sistemas COBOL o viejos. Corta un texto masivo en base a un ancla dejándote una lista.
-```python
-datos = "| 001 | Arturo |".split("|") 
-```
+> Corta un texto masivo en base a un ancla dejándote una lista.
 
 **4. Arrancar Cabezas y Colas (`.pop()`)**
 > Sencillamente destruye la posición X de una lista generada con márgenes corruptos.
-```python
-precios = ["EL TITULO BASURA DEL EXCEL", 50, 40]
-precios.pop(0) # Apunta y elimina. Cae la basura.
-```
 
 **5. El Acumulador o Contador (`+=`)**
 > Darle memoria creciente o decreciente a una variable orgánica.
-```python
-precio_total = 0
-precio_total += 50.50 
-```
 
 **6. El Dios del Tiempo (`datetime` y `.strftime()`)**
-> Fábrica de nombres de archivos inquebrantables.
-```python
-from datetime import datetime
-# Formato File-Friendly, jamas uses DOS PUNTOS en nombres de windows!!
-hora_limpia = datetime.now().strftime("%Y-%m-%d_%H-%M-%S") 
-ruta = f"C:\\reportes\\log_{hora_limpia}.txt"
-```
+> Fábrica de nombres de archivos inquebrantables (`"%Y-%m-%d"`).
 
 **7. Inteligencia Artificial NLP (`TextBlob`)**
-> Obtener métricas flotantes entre -1.0 y 1.0 para analizar psicología y priorizar tickets de soporte.
-```python
-from textblob import TextBlob
-matematica_emocion = TextBlob("I absolutely hate this update").sentiment.polarity 
-# Arroja un número tipo -0.80.
-```
+> Obtener métricas flotantes entre -1.0 y 1.0 para analizar psicología.
 
 **8. Web Scraping Pura (`BeautifulSoup` y `.text`)**
-> La diferencia brutal entre `.text` de Response (Todo el HTML sucio de la web) vs `.text` aislando la carne útil en ciclos de Extracción.
-```python
-import requests
-from bs4 import BeautifulSoup
-respuesta = requests.get("http://sitio.com")
-sabueso_scrap = BeautifulSoup(respuesta.text, "html.parser") # HTML Sucio
-
-textos_crudos = sabueso_scrap.find_all("span", class_="text") 
-for item in textos_crudos:
-    print(item.text) # Revela el diamante destripado (La carne)
-```
+> Diferencia brutal entre HTML sucio vs extraer la carne limpia con `.text`.
 
 **9. Desglose de APIs Remotas (`.json()`)**
-> Traducir la respuesta de un servidor de internet directamente a Diccionarios Nativos de Python estructurados.
-```python
-respuesta = requests.get("http://api.com/usuario")
-print(respuesta.json()["nombre"])
-```
+> Traducir la respuesta gigante de internet a Python.
 
 **10. La Trampa Universal: `CSV Injection`**
-> Cuando transfieres textos humanos a Excel `.csv`, *debes* englobarlos en comillas dobles `"..."`, de lo contrario Pandas sentirá que cualquier coma de puntuación interna es el activador de una "Siguiente Columna" destruyendo las dimensiones.
+> Envolver frases humanas en Excel con dobles comillas `"..."` para no distorsionar las comas naturales.
+
+**11. Destructor de Vacíos y Clones (`.dropna()` / `.drop_duplicates()`)**
+> Purgar filas que tienen casillas obligatorias vacías o registros repetidos por error humano en CSVs.
+```python
+# Borra la fila entera si en la columna ID no hay texto
+df_limpio = df.dropna(subset=['ID_VENTA']) 
+# Destruye filas exactamente iguales
+df_limpio = df_limpio.drop_duplicates()
+```
+
+**12. Cirugía de Strings en Tablas (`.str.replace()` y el misterio de Regex)**
+> Pandas requiere declarar el poder `.str` antes de alterar letras. 
+> IMPORTANTE: Al reemplazar cosas raras como símbolos de Dólar (`$`), añadir el `regex=False` es obligatorio para evitar que Pandas intente invocar el lenguaje hack matemático de "Expresiones Regulares" y force al sistema a simplemente leer tu símbolo de dólar como una inofensiva letra a borrar.
+```python
+# El regex=False es tu escudo protector para símbolos extraños de facturación.
+df['PRECIO'] = df['PRECIO'].str.replace('$', '', regex=False)
+
+# Si una celda está vacía (NaN), le pone "DESCONOCIMIENTO".
+df['PRODUCTO'] = df['PRODUCTO'].fillna('PRODUCTO_DESCONOCIDO')
+```
 
 ---
 
 ## 🏆 11. Tu Historial de Retos Operativos (`CERTIFICACIÓN MÁSTER LOCAL`)
 
-1. **API Anidada**: Extracción JSON en servidor externo.
-2. **Casino Infalible**: Menú robusto blindado con Excepciones de teclado.
-3. **Generador Masivo**: OS path y automatización de lotes de carpetas.
-4. **Data Analytics V0**: Exportación estática gráfica mediante Matplotlib y Pandas.
-5. **Generador Tokens**: Algoritmo random de ciberseguridad con iteradores aditivos y constructivos (+=).
-6. **Descuento Modular**: Capsulas `def` infalibles a pruebas de typo's.
-7. **Pipeline de Datos Legado**: Escaneo vectorial, ignorado de headers, fragmentos (`split`) y limpieza con `pop`.
-8. **Analista Sentimental NLP**: Uso de cerebro local `TextBlob` interactivo clasificador de inputs infinitos.
-9. **Super-Ingeniería Pandas-AI**: Absorción de columnas CSV sin coma-injection, integración profunda del cerebro TextBlob a los registros base y rearme y anexión de nuevos Dataframes clasificados a idiomas humanos mediante Excel.
-10. **Extractor Web (Scraping)**: Engaño de puertos HTTP e ingeniería inversa al DOM usando analizadores HTML con recolección de Listas y limpieza `span.text`.
+1. **API Anidada**: Extracción JSON en servidor.
+2. **Casino Infalible**: Menú interactivo `while True` protegido.
+3. **Generador Masivo**: OS path y automatización de archivos.
+4. **Data Analytics V0**: Fabricación de DF e inyección de Gráficos PNG.
+5. **Generador Tokens**: Algoritmo `random.choice`.
+6. **Descuento Modular**: Capsulas `def` universales.
+7. **Pipeline de Datos Legado**: Escaneo vectorial, ignorado de headers, `.split("|")` y cast flote.
+8. **Analista NLP**: Clasificación Sentimental mediante TextBlob.
+9. **Super-Ingeniería Pandas-AI**: Recombinando Sentimientos IA en nuevas series Excel evadiendo inyecciones de Coma.
+10. **Extractor Hacker (Scraping)**: Ingeniería inversa a los `span.text`.
+11. **Super-Auditor Contable**: Masterización de `dropna`, limpieza total de precios con bypass de `regex=False`, con recolección global y `.groupby().agg`.
 
 *(El manual evoluciona constantemente)*
