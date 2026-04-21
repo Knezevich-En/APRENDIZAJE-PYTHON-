@@ -1,0 +1,13 @@
+print(f"** Receta de Cocina **\n")
+nombre_receta = input("Ingrese el nombre: ")
+ingredientes = input("Ingrese los ingredientes: ")
+ingredientes = ingredientes.split(",") 
+tiempo_preparacion = int(input("Ingrese el tiempo de preparación (min): "))
+dificultad_receta = input("Ingrese la dificultad: ")
+print(f"------------------")
+print(f"Nombre Receta: {nombre_receta}")
+print(f"Ingredientes: \n")
+for x in ingredientes:
+    print(f"- {x.strip()}")
+print(f"Tiempo de Preparación: {tiempo_preparacion} minutos")
+print(f"Dificultad: {dificultad_receta}")
