@@ -41,7 +41,6 @@ while True:
             print("Producto eliminado exitosamente.")
 
     elif opcion == "3":
-
         for i in inventario:
             print(f"Nombre: {i['nombre']}")
             print(f"Precio: {i['precio']}")
